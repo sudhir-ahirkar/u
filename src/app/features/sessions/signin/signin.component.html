@@ -1,0 +1,30 @@
+<div class="sign-in-container white">
+  <h2>Sign in </h2>
+
+  <mat-error *ngIf="signinError">{{signinError}}</mat-error>
+
+  <form [formGroup]="signinForm" (ngSubmit)="signin()" autocomplete="off">
+
+    <input id="fakeUsername" name="userName" style="display:none" type="text" autocomplete="off">
+    <input id="fakePassword" name="password" style="display:none" type="password" autocomplete="off">
+
+    <h3>Please fill in your username and password</h3>
+
+    <mat-form-field class="full-width">
+      <mat-label class="white">Username</mat-label>
+      <input matInput maxlength="30" name="userName" formControlName="userName" required id="username" autocomplete="off">
+      <mat-error *ngIf="signinForm.controls.userName.invalid" class="form-error-msg">Username is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label class="white">Password</mat-label>
+      <input matInput type="password" name="password" formControlName="password" required id="password" autocomplete="off">
+      <mat-error *ngIf="signinForm.controls.password.invalid" class="form-error-msg">Password is required</mat-error>
+    </mat-form-field>
+
+    <button mat-stroked-button [disabled]="signinForm.invalid" id="signinBtn"> Sign in </button>
+
+  </form>
+
+  <a [routerLink]="'/sessions/forgot-password'" class="forgot-password">Forgot password? </a>
+</div>
